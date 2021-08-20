@@ -11,8 +11,11 @@ mysql = MySQL(app)
 def recipes():
     cur = mysql.connection.cursor()
     cur.execute('''SELECT * FROM recipe''')
-    rv = cur.fetchall()
-    return str(rv)
+    rows = cur.fetchall()
+    recipes = []
+    for row in rows:
+        recipes.append(row['name'])
+    return str(recipes)
 
 if __name__ == '__main__':
     app.run(debug=True)
