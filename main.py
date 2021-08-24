@@ -7,11 +7,13 @@ from pip._vendor import requests
 
 
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('config.py') # Get configuration for MySQL db
 
 mysql = MySQL(app)
 
-# @app.route('/')
+@app.route('/')
+def greeting():
+    return "Hello from python"
 # def recipes():
 #     cur = mysql.connection.cursor()
 #     cur.execute('''SELECT * FROM recipe''')
@@ -20,6 +22,10 @@ mysql = MySQL(app)
 #     for row in rows:
 #         recipes.append(row['name'])
 #     return str(recipes)
+
+@app.route('/api')
+def api():
+    return "this is the api route"
 
 
 # https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true. 
