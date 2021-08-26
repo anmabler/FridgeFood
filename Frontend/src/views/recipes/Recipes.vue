@@ -1,9 +1,12 @@
 <template>
-  <div>
-      <p>Here will be recipes.</p>
+  <div v-if="recipes.length">
+      <h1>Recipes</h1>
       <div v-for="recipe in recipes" :key="recipe.id" class="recipe">
         <h2>{{ recipe.title }}</h2>
       </div>
+  </div>
+  <div v-else>
+    Loading recipes...
   </div>
 </template>
 

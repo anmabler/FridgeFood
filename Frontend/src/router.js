@@ -16,7 +16,7 @@ const routes = [
         component: Recipes
     },
     {
-        path: '/recipes/:name', // route parameter
+        path: '/recipes/:id', // route parameter
         name: 'RecipeDetails',
         component: RecipeDetails,
         props: true
