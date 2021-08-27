@@ -1,8 +1,11 @@
 <template>
   <div v-if="recipes.length">
       <h1>Recipes</h1>
-      <div v-for="recipe in recipes" :key="recipe.id" class="recipe">
-        <h2>{{ recipe.title }}</h2>
+      <div v-for="recipe in recipes" :key="recipe.id" class="recipe" >
+        <router-link :to="{ name : 'RecipeDetails', params : { id : recipe.id }}">
+          <h2>{{ recipe.title }}</h2>
+          <img :src="recipe.image" :alt="recipe.title">
+        </router-link>
       </div>
   </div>
   <div v-else>
@@ -12,23 +15,21 @@
 
 <script>
 export default {
-  data (){
-    return{
-      recipes: []
+  computed: {
+    recipes(){
+      return this.$store.getters.RECIPES
     }
   },
+ 
   mounted() {
-    fetch('http://localhost:3000/api/recipes/findByIngredients')
-    .then(res => res.json()) // parse
-    .then(data => this.recipes = data) // populate recipes-prop with the data from the API
-    .catch(err => console.log(err.message)) // if there is an error, log the error message in the console
+    this.$store.dispatch('getRecipes')
   }
 
 }
 </script>
 
 <style scoped>
-.class{
+.recipe{
   background-color: blanchedalmond;
 }
 

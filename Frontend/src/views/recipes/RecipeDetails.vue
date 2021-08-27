@@ -8,7 +8,7 @@
             <li class="ingredients" v-for="ingredient in recipe.extendedIngredients" :key="ingredient.name"> {{ ingredient.name }} {{ingredient.amount}} {{ ingredient.unit}} </li>
         </ul>
 
-        <!-- If the recipe does not have a description, go to the source url. -->
+        <!-- If the recipe does not have instructions, show a link to the source url. -->
         <div v-if="recipe.length">
             <p>Instructions: {{ recipe.instructions}}</p>
         </div>
@@ -17,38 +17,27 @@
         </div>
     </div>
     <div v-else>
-        Loading...
+        Loading recipe details...
     </div>
 </template>
 
 <script>
 export default {
-    props: ['id'],
-    data (){
-        return {
-            recipe: null,
+    computed: {
+        recipe(){
+            return this.$store.getters.RECIPE
         }
     },
-    methods: {
-        
-        
-    },
+
     mounted() {
-        fetch('http://localhost:3000/api/recipes/findById/' + this.id)
-        .then(res => res.json()) // parse
-        .then(data => this.recipe = data) // populate recipes-prop with the data from the API
-        .catch(err => console.log(err.message))
+        this.$store.dispatch('getRecipeById', this.$route.params.id)
     }
-    // data() {
-    //     return {
-    //         name: this.$route.params.name
-    //     }
-    // }
 
 }
 </script>
 
 <style scoped>
+/* I'm choosing to capitalize the first letter of the ingredient-string with CSS since I only want it displayed as such. */ 
 .ingredients::first-letter{
     text-transform: capitalize;
 }
