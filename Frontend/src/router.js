@@ -3,6 +3,7 @@ import Home from './views/Home.vue'
 import Recipes from './views/recipes/Recipes.vue'
 import RecipeDetails from './views/recipes/RecipeDetails.vue'
 import ErrorPage from './views/ErrorPage.vue'
+import Search from './components/Search.vue'
 
 const routes = [
     {
@@ -20,6 +21,11 @@ const routes = [
         name: 'RecipeDetails',
         component: RecipeDetails,
         props: true
+    },
+    {
+        path: '/search',
+        name: Search,
+        component: Search
     },
     
     {
