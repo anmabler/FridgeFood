@@ -2,41 +2,58 @@ import { createStore } from 'vuex'
 
 const state = {
     recipes : [],
-    recipe : null
+    recipe : null,
+    searchInput : '',
+    searchInputList: [],
+    trimmedInput: [],
+    queryString : '',
+
 }
 
 const getters = {
-    RECIPES : state => {
+    recipes: state => {
         return state.recipes
     },
-    RECIPE : state => {
+    recipe: state => {
         return state.recipe
+    },
+    trimmedInput: state => {
+        return state.trimmedInput
     }
 
 }
 
 const mutations = {
-    setRecipes(state, recipeList){
+    getRecipes(state, recipeList){
         state.recipes = recipeList
     },
     getRecipeDetails(state, recipe){
         state.recipe = recipe
+    },
+    setSearchInput(state, searchInput){
+        state.searchInput = searchInput
+    },
+    setTrimmedInput(state, trimmedInput){
+        state.trimmedInput = trimmedInput
+    },
+    setQueryString(state, queryString){
+        state.queryString = queryString
     }
 }
 
 const actions = {
     async getRecipes(store) {
-        let recipes = await fetch('http://localhost:3000/api/recipes/findByIngredients')
+        let recipes = await fetch('http://localhost:3000/api/recipes/findByIngredients/' )
         recipes = await recipes.json() 
-        store.commit('setRecipes', recipes)
+        store.commit('getRecipes', recipes)
     },
     async getRecipeById(store, id) {
         let recipe = await fetch('http://localhost:3000/api/recipes/findById/' + id)
         recipe = await recipe.json()
         store.commit('getRecipeDetails', recipe)
-
         // .catch(err => console.log(err.message))
     }
+
 }
 
 export default createStore({state, getters, mutations, actions})
