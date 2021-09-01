@@ -4,6 +4,7 @@ import Recipes from './views/recipes/Recipes.vue'
 import RecipeDetails from './views/recipes/RecipeDetails.vue'
 import ErrorPage from './views/ErrorPage.vue'
 import Search from './components/Search.vue'
+import SearchPage from './views/SearchPage.vue'
 
 const routes = [
     {
@@ -11,18 +12,18 @@ const routes = [
         name: 'Home',
         component: Home
     },
-    // {
-    //     path: '/recipes',
-    //     name: 'Recipes',
-    //     component: Recipes
-    // },
     {
-        path: '/recipes/search/:ing',
+        path: '/recipes',
         name: 'Recipes',
-        component: Recipes,
-        props: true
-
+        component: Recipes
     },
+    // {
+    //     path: '/recipes/search/:ing',
+    //     name: 'Recipes',
+    //     component: Recipes,
+    //     props: true
+
+    // },
     {
         path: '/recipes/:id', // route parameter
         name: 'RecipeDetails',
@@ -31,8 +32,8 @@ const routes = [
     },
     {
         path: '/search',
-        name: Search,
-        component: Search
+        name: SearchPage,
+        component: SearchPage
     },
     
     {

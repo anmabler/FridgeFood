@@ -43,7 +43,7 @@ const mutations = {
 
 const actions = {
     async getRecipes(store) {
-        let recipes = await fetch('http://localhost:3000/api/recipes/findByIngredients/' )
+        let recipes = await fetch('http://localhost:3000/api/recipes/findByIngredients/' + state.queryString)
         recipes = await recipes.json() 
         store.commit('getRecipes', recipes)
     },
