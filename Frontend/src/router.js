@@ -11,10 +11,17 @@ const routes = [
         name: 'Home',
         component: Home
     },
+    // {
+    //     path: '/recipes',
+    //     name: 'Recipes',
+    //     component: Recipes
+    // },
     {
-        path: '/recipes',
+        path: '/recipes/search/:ing',
         name: 'Recipes',
-        component: Recipes
+        component: Recipes,
+        props: true
+
     },
     {
         path: '/recipes/:id', // route parameter

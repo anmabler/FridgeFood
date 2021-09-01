@@ -27,9 +27,10 @@ def greeting():
 # https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true. 
 # https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
 # get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=apples,+flour,+sugar&number=2')
-@app.route('/api/recipes/findByIngredients')
-def findByIngredients():
-    res = requests.get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=apples,+flour,+sugar&number=2')
+@app.route('/api/recipes/findByIngredients/<string:ing>')
+def findByIngredients(ing):
+    # res = requests.get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=apples,+flour,+sugar&number=2')
+    res = requests.get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=' + ing + '&number=2')
     data = json.loads(res.content)
     return jsonify(data)
 

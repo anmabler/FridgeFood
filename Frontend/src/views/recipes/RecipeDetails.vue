@@ -25,7 +25,7 @@
 export default {
     computed: {
         recipe(){
-            return this.$store.getters.RECIPE
+            return this.$store.getters.recipe
         }
     },
 
