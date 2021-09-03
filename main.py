@@ -42,6 +42,22 @@ def findById(id):
     data = json.loads(res.content)
     return jsonify(data)
 
+@app.route('/api/users/<int:id>')
+def getUserByid(id):
+    cur = mysql.connection.cursor()
+    cur.execute(#'SELECT * FROM user WHERE iduser = %s'
+                '''
+                SELECT g.name AS groceryname
+                FROM user as u, userxgroceries as uxg, groceries as g
+                WHERE uxg.groceryid = g.idgroceries 
+                AND (u.iduser = uxg.userid) 
+                AND u. iduser = %s
+                ''', (str(id)))
+    rows = cur.fetchall()
+    info = []
+    for row in rows:
+        info.append(row)
+    return (rows)
 
 if __name__ == '__main__':
     app.run(debug=True)
