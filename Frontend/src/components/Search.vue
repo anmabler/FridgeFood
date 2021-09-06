@@ -30,7 +30,7 @@ export default {
       
     },
     saveSearchToList(){
-       this.searchInputList = this.searchInput.split(',') // Split the input at ',' since I want the user to be able to input multiple ingredients.
+      this.searchInputList = this.searchInput.split(',') // Split the input at ',' since I want the user to be able to input multiple ingredients.
       for (let word of this.searchInputList){
         this.trimmedInput.push(word.trim())  // Trim spaces before and after the word.   
         // console.log(word);

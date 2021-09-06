@@ -52,6 +52,9 @@ const actions = {
         recipe = await recipe.json()
         store.commit('getRecipeDetails', recipe)
         // .catch(err => console.log(err.message))
+    },
+    async addGrocery(store, id, ingredient){
+        
     }
 
 }

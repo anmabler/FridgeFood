@@ -5,6 +5,7 @@ import RecipeDetails from './views/recipes/RecipeDetails.vue'
 import ErrorPage from './views/ErrorPage.vue'
 import Search from './components/Search.vue'
 import SearchPage from './views/SearchPage.vue'
+import UserPage from './views/UserPage.vue'
 
 const routes = [
     {
@@ -34,6 +35,12 @@ const routes = [
         path: '/search',
         name: SearchPage,
         component: SearchPage
+    },
+    {
+        path: '/users/:id',
+        name: UserPage,
+        component: UserPage,
+        props: true
     },
     
     {

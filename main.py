@@ -59,5 +59,32 @@ def getUserByid(id):
         info.append(row)
     return (rows)
 
+@app.route('/api/users/<int:id>', methods=["POST"])
+def addGroceriesToDb(id):
+    obj = request.get_json()
+
+    print(obj["name"])
+    cur = mysql.connection.cursor()
+    cur.execute(
+        '''
+        START TRANSACTION;
+
+        INSERT INTO groceries(name)
+        VALUES (%s) 
+        ON DUPLICATE KEY UPDATE name = name;
+
+        INSERT INTO userxgroceries(userid, groceryid) 
+        VALUES (%s, (SELECT idgroceries FROM groceries WHERE groceries.name = %s));
+
+        COMMIT;
+        ''',(obj["name"], str(id), obj["name"]))
+        # '''
+        # INSERT INTO groceries(name)
+        # VALUES (%s) 
+        # ON DUPLICATE KEY UPDATE name = name;
+        # ''',(obj["name"],))
+    mysql.connection.commit()
+    return (obj)
+
 if __name__ == '__main__':
     app.run(debug=True)
