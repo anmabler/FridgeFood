@@ -19,6 +19,12 @@ const getters = {
     },
     trimmedInput: state => {
         return state.trimmedInput
+    },
+    searchInput: state => {
+        return state.searchInput
+    },
+    searchInputList: state => {
+        return state.searchInputList
     }
 
 }
@@ -38,6 +44,10 @@ const mutations = {
     },
     setQueryString(state, queryString){
         state.queryString = queryString
+    },
+    
+    setSearchInputList(state, searchInputList){
+        state.searchInputList = searchInputList
     }
 }
 
