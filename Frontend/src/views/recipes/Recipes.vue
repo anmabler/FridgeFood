@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>This is the recipe page</h1>
     <div v-if="recipes.length">
         <h1>Recipes</h1>
         <div v-for="recipe in recipes" :key="recipe.id" class="recipe" >
