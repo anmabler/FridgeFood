@@ -26,9 +26,8 @@ export default {
                         name: this.ingredient })
      
                 }
-                let response = await fetch("http://localhost:3000/api/users/1", request)
-                let data = await response.json()
-                this.ingredient = data 
+                await fetch("http://localhost:3000/api/users/1", request)
+                
             } catch(error){
                 console.log(error)
             }
