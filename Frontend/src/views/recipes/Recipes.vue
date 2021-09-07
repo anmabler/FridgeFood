@@ -38,6 +38,9 @@ export default {
 <style scoped>
 .recipe{
   background-color: blanchedalmond;
+  margin-bottom: 50px;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 </style>
