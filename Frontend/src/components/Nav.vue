@@ -16,14 +16,20 @@ export default {
 
 <style scoped>
 ul {
-    display: inline-block;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+li {
+    display: inline;
+}
+a {
+    padding: 10px
+}
 div {
     /* margin-top: 20px; */
     background-color: bisque;
+    padding-bottom: 10px;
 }
 
 </style>
