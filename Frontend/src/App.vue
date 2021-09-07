@@ -1,10 +1,18 @@
 <template>
+  <Nav />
   <router-view/>
+
 </template>
 
-<script setup>
+<script>
+import Nav from "./components/Nav.vue"
 
-
+export default {
+  name: 'App',
+  components: {
+  Nav
+  }
+}
 // This starter template is using Vue 3 experimental <script setup> SFCs
 // Check out https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
 </script>
@@ -16,6 +24,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
