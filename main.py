@@ -66,23 +66,28 @@ def addGroceriesToDb(id):
     print(obj["name"])
     cur = mysql.connection.cursor()
     cur.execute(
-        '''
-        START TRANSACTION;
-
-        INSERT INTO groceries(name)
-        VALUES (%s) 
-        ON DUPLICATE KEY UPDATE name = name;
-
-        INSERT INTO userxgroceries(userid, groceryid) 
-        VALUES (%s, (SELECT idgroceries FROM groceries WHERE groceries.name = %s));
-
-        COMMIT;
-        ''',(obj["name"], str(id), obj["name"]))
         # '''
+        # START TRANSACTION;
+
         # INSERT INTO groceries(name)
         # VALUES (%s) 
         # ON DUPLICATE KEY UPDATE name = name;
-        # ''',(obj["name"],))
+
+        # INSERT INTO userxgroceries(userid, groceryid) 
+        # VALUES (%s, (SELECT idgroceries FROM groceries WHERE groceries.name = %s));
+
+        # COMMIT;
+        # ''',(obj["name"], str(id), obj["name"]))
+        '''
+        INSERT INTO groceries(name)
+        VALUES (%s) 
+        ON DUPLICATE KEY UPDATE name = name;
+        ''',(obj["name"],))
+    mysql.connection.commit()
+    cur.execute('''
+        INSERT INTO userxgroceries(userid, groceryid) 
+        VALUES (%s, (SELECT idgroceries FROM groceries WHERE groceries.name = %s));
+        ''',(str(id), obj["name"],))
     mysql.connection.commit()
     return (obj)
 
