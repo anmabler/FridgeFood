@@ -1,5 +1,5 @@
 <template>
-  <h1>Hello from Home!</h1>
+  <h3>Will you be the "god of fried"?</h3>
 </template>
 
 <script>
