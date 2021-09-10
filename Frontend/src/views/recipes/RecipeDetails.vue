@@ -30,7 +30,7 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch('getRecipeById', this.$route.params.id)
+        this.$store.dispatch('getRecipeById', this.$route.params.id) //move to created hook
     }
 
 }

@@ -1,13 +1,15 @@
 <template>
-  <form @submit.prevent="saveSearchToList">
-      <label for="searchField">Search </label>
-      <input v-model="searchInput" type="text" id="searchField" required>
-      <small id="searchHelp">To search for multiple ingredients, add a comma (,) between each ingredient.</small>
-      <button type="submit" >Search</button>
-  </form>
-  <div v-if="searchInput.length">
-    <h3>Your search:</h3>
-    <p>{{searchInput}}</p>
+  <div>
+    <form @submit.prevent="saveSearchToList">
+        <label for="searchField">Search </label>
+        <input v-model="searchInput" type="text" id="searchField" required>
+        <small id="searchHelp">To search for multiple ingredients, add a comma (,) between each ingredient.</small>
+        <button type="submit" >Search</button>
+    </form>
+    <div v-if="searchInput.length">
+      <h3>Your search:</h3>
+      <p>{{searchInput}}</p>
+    </div>
   </div>
 </template>
 

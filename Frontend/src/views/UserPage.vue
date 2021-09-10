@@ -1,10 +1,12 @@
 <template>
-  <form @submit.prevent="postIngredients" action="post">
-      <label for="ingredient">Add ingredient</label>
-      <input type="text" id="ingredient" v-model="ingredient">
-      <button type="submit">Add</button>
-  </form>
-  <div v-if="this.ingredient.length">{{ ingredient }}</div>
+    <div>
+        <form @submit.prevent="postIngredients" action="post">
+            <label for="ingredient">Add ingredient</label>
+            <input type="text" id="ingredient" v-model="ingredient">
+            <button type="submit">Add</button>
+        </form>
+        <div v-if="this.ingredient.length">{{ ingredient }}</div>
+    </div>
 </template>
 
 <script>

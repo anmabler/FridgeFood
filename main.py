@@ -15,29 +15,15 @@ mysql = MySQL(app)
 @app.route('/')
 def greeting():
     return "Hello from python"
-# def db():
-#     cur = mysql.connection.cursor()
-#     cur.execute('''SELECT * FROM recipe''')
-#     rows = cur.fetchall()
-#     recipes = []
-#     for row in rows:
-#         recipes.append(row['name'])
-#     return str(recipes)
 
-# https://api.spoonacular.com/recipes/716429/information?apiKey=YOUR-API-KEY&includeNutrition=true. 
-# https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
-# get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=apples,+flour,+sugar&number=2')
 @app.route('/api/recipes/findByIngredients/<string:ing>')
 def findByIngredients(ing):
-    # res = requests.get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=apples,+flour,+sugar&number=2')
     res = requests.get('https://api.spoonacular.com/recipes/findByIngredients?information&apiKey=' + API_KEY + '&ingredients=' + ing + '&number=2')
     data = json.loads(res.content)
     return jsonify(data)
 
 @app.route('/api/recipes/findById/<int:id>')
 def findById(id):
-    # https://api.spoonacular.com/recipes/{id}/information
-    # https://api.spoonacular.com/recipes/716429/information?includeNutrition=false
     res = requests.get('https://api.spoonacular.com/recipes/' + str(id) + '/information?apiKey=' + API_KEY + '&includeNutrition=false')
     data = json.loads(res.content)
     return jsonify(data)
@@ -66,18 +52,6 @@ def addGroceriesToDb(id):
     print(obj["name"])
     cur = mysql.connection.cursor()
     cur.execute(
-        # '''
-        # START TRANSACTION;
-
-        # INSERT INTO groceries(name)
-        # VALUES (%s) 
-        # ON DUPLICATE KEY UPDATE name = name;
-
-        # INSERT INTO userxgroceries(userid, groceryid) 
-        # VALUES (%s, (SELECT idgroceries FROM groceries WHERE groceries.name = %s));
-
-        # COMMIT;
-        # ''',(obj["name"], str(id), obj["name"]))
         '''
         INSERT INTO groceries(name)
         VALUES (%s) 
