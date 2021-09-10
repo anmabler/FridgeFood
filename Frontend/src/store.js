@@ -5,7 +5,6 @@ const state = {
     recipe : null,
     searchInput : '',
     searchInputList: [],
-    trimmedInput: [],
     queryString : '',
 
 }
@@ -16,9 +15,6 @@ const getters = {
     },
     recipe: state => {
         return state.recipe
-    },
-    trimmedInput: state => {
-        return state.trimmedInput
     },
     searchInput: state => {
         return state.searchInput
@@ -39,9 +35,6 @@ const mutations = {
     setSearchInput(state, searchInput){
         state.searchInput = searchInput
     },
-    setTrimmedInput(state, trimmedInput){
-        state.trimmedInput = trimmedInput
-    },
     setQueryString(state, queryString){
         state.queryString = queryString
     },
@@ -61,7 +54,7 @@ const actions = {
         let recipe = await fetch('http://localhost:3000/api/recipes/findById/' + id)
         recipe = await recipe.json()
         store.commit('getRecipeDetails', recipe)
-        // .catch(err => console.log(err.message))
+
     },
 }
 
